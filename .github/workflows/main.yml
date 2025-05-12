@@ -1,0 +1,19 @@
+name: CI on Amazon Linux
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: [self-hosted, amazon-linux]  # Uses your Amazon Linux runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo yum install -y nodejs npm
+
+      - name: Run tests
+        run: npm test
